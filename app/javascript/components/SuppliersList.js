@@ -88,12 +88,12 @@ const SuppliersList = () => {
         <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Supplier</button>
       </div>
 
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Supplier</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">Add New Supplier</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
@@ -103,12 +103,12 @@ const SuppliersList = () => {
                 <input type="text" className="form-control" name="phone_number" placeholder="Phone Number" value={newSupplier.phone_number} onChange={handleInputChange}/>
                 <input type="email" className="form-control" name="supplier_email" placeholder="Email" value={newSupplier.supplier_email} onChange={handleInputChange}/>
       
-                <button type="submit" class="btn btn-primary">Add Supplier</button>
+                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Add Supplier</button>
               </form>
             </div>
 
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>
         </div>
