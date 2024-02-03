@@ -11,3 +11,7 @@
 # Users
 user1 = User.create(full_name: 'Anyars Yussif', username: 'anyars')
 user2 = User.create(full_name: 'Encarta Anyars', username: 'encarta')
+
+# Suppliers
+supplier1 = Supplier.create(supplier_name: 'Tobinco Pharmaceuticals', address: 'Abuakwa Sepaase', phone_number: '0245125241', supplier_email: 'supplier1@something.com')
+supplier2 = Supplier.create(supplier_name: 'Kinapharma', address: 'Kumasi', phone_number: '0208596548', supplier_email: 'supplier2@something.com')
