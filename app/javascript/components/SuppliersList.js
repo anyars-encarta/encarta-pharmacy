@@ -1,6 +1,6 @@
 // app/javasctipt/components/SuppliersList.js
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSuppliers } from '../redux/suppliers/suppliersSlice';
 
@@ -13,6 +13,26 @@ const SuppliersList = () => {
   useEffect(() => {
     dispatch(fetchSuppliers());
   }, [dispatch]);
+
+  const [selectedSupplierId, setSelectedSupplierId] = useState(null);
+
+  const handleEditClick = (supplierId) => {
+    // Handle edit logic here
+    console.log('Edit Supplier ID:', supplierId);
+  };
+
+  const handleDeleteClick = (supplierId) => {
+    // Handle delete logic here
+    console.log('Delete Supplier ID:', supplierId);
+  };
+
+  const handleEllipsisClick = (supplierId) => {
+    setSelectedSupplierId(supplierId);
+  };
+
+  const closeMenu = () => {
+    setSelectedSupplierId(null);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -33,6 +53,7 @@ const SuppliersList = () => {
             <th>Address</th>
             <th>Phone Number</th>
             <th>Email</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -43,6 +64,19 @@ const SuppliersList = () => {
               <td>{supplier.address}</td>
               <td>{supplier.phone_number}</td>
               <td>{supplier.supplier_email}</td>
+
+              <td>
+                {selectedSupplierId === supplier.id ? (
+                  <div className="menu">
+                    <button onClick={() => handleEditClick(supplier.id)}>Edit</button>
+                    <button onClick={() => handleDeleteClick(supplier.id)}>Delete</button>
+                    <button onClick={closeMenu}>Close</button>
+                  </div>
+                ) : (
+                  <button onClick={() => handleEllipsisClick(supplier.id)}>&#8942;</button>
+                )}
+              </td>
+
             </tr>
           ))}
         </tbody>
