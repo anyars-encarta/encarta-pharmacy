@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSuppliers } from '../redux/suppliers/suppliersSlice';
+import { faEdit, faTrashAlt, faTimes, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SuppliersList = () => {
   const dispatch = useDispatch();
@@ -67,13 +69,13 @@ const SuppliersList = () => {
 
               <td>
                 {selectedSupplierId === supplier.id ? (
-                  <div className="menu">
-                    <button onClick={() => handleEditClick(supplier.id)}>Edit</button>
-                    <button onClick={() => handleDeleteClick(supplier.id)}>Delete</button>
-                    <button onClick={closeMenu}>Close</button>
-                  </div>
+                    <div className="menu">
+                    <FontAwesomeIcon icon={faEdit} onClick={() => handleEditClick(supplier.id)} />
+                    <FontAwesomeIcon icon={faTrashAlt} onClick={() => handleDeleteClick(supplier.id)} />
+                    <FontAwesomeIcon icon={faTimes} onClick={closeMenu} />
+                    </div>
                 ) : (
-                  <button onClick={() => handleEllipsisClick(supplier.id)}>&#8942;</button>
+                    <FontAwesomeIcon icon={faEllipsisV} onClick={() => handleEllipsisClick(supplier.id)} />
                 )}
               </td>
 
