@@ -10,6 +10,30 @@ export const fetchSuppliers = createAsyncThunk('suppliers/fetchSuppliers', async
   return data;
 });
 
+// Define the async thunk to create a new Supplier
+
+export const createSupplier = createAsyncThunk('suppliers/createSupplier', async (formData) => {
+  try {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const response = await fetch(`${base_url}/suppliers`, {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken, // Add the CSRF token to the headers
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error creating supplier: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return { error: error.message };
+  }
+});
+
 // Create the slice
 const suppliersSlice = createSlice({
   name: 'suppliers',
@@ -20,16 +44,30 @@ const suppliersSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchSuppliers.pending, (state) => {
+    builder
+      .addCase(fetchSuppliers.pending, (state) => {
       state.loading = true;
       state.error = null;
-    });
-    builder.addCase(fetchSuppliers.fulfilled, (state, action) => {
+    })
+    
+    .addCase(fetchSuppliers.fulfilled, (state, action) => {
       state.suppliers = action.payload;
       state.loading = false;
       state.error = null;
-    });
-    builder.addCase(fetchSuppliers.rejected, (state, action) => {
+    })
+
+    .addCase(fetchSuppliers.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    })
+
+    .addCase(createSupplier.fulfilled, (state, action) => {
+      state.suppliers.push(action.payload);
+      state.loading = false;
+      state.error = null;
+    })
+
+    .addCase(createSupplier.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });
