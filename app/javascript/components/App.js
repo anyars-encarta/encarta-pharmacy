@@ -1,10 +1,8 @@
-import React from "react";
-import User from "./User";
+import React from 'react';
+import User from './User';
 
-const App = () => {
-    return (
-      <User />
-    )
-}
+const App = () => (
+  <User />
+);
 
 export default App;
