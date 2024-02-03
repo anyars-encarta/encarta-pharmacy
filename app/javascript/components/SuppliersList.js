@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchSuppliers } from '../redux/suppliers/suppliersSlice';
 import { faEdit, faTrashAlt, faTimes, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../../assets/stylesheets/suppliers.css';
 
 const SuppliersList = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const SuppliersList = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading-status">Loading...</div>;
   }
 
   if (error) {
@@ -45,44 +46,51 @@ const SuppliersList = () => {
   }
 
   return (
-    <div>
-      <h1>Suppliers</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Supplier Name</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {suppliers.map((supplier) => (
-            <tr key={supplier.id}>
-              <td>{supplier.id}</td>
-              <td>{supplier.supplier_name}</td>
-              <td>{supplier.address}</td>
-              <td>{supplier.phone_number}</td>
-              <td>{supplier.supplier_email}</td>
+    <div className="supplier-container">
+      <div className="supplier-header">
+        <h1>Suppliers</h1>
+        <button type="button" className="btn btn-outline-primary">Add New Supplier</button>
+      </div>
 
-              <td>
-                {selectedSupplierId === supplier.id ? (
-                    <div className="menu">
-                    <FontAwesomeIcon icon={faEdit} onClick={() => handleEditClick(supplier.id)} />
-                    <FontAwesomeIcon icon={faTrashAlt} onClick={() => handleDeleteClick(supplier.id)} />
-                    <FontAwesomeIcon icon={faTimes} onClick={closeMenu} />
-                    </div>
-                ) : (
-                    <FontAwesomeIcon icon={faEllipsisV} onClick={() => handleEllipsisClick(supplier.id)} />
-                )}
-              </td>
-
+    <div className="table-responsive">
+        <table className="table table-success table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Supplier Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+            {suppliers.map((supplier) => (
+                <tr key={supplier.id}>
+                <td>{supplier.id}</td>
+                <td>{supplier.supplier_name}</td>
+                <td>{supplier.address}</td>
+                <td>{supplier.phone_number}</td>
+                <td>{supplier.supplier_email}</td>
+
+                <td>
+                    {selectedSupplierId === supplier.id ? (
+                        <div className="menu">
+                        <FontAwesomeIcon icon={faEdit} onClick={() => handleEditClick(supplier.id)} />
+                        <FontAwesomeIcon icon={faTrashAlt} onClick={() => handleDeleteClick(supplier.id)} />
+                        <FontAwesomeIcon icon={faTimes} onClick={closeMenu} />
+                        </div>
+                    ) : (
+                        <FontAwesomeIcon className="ellipsis" icon={faEllipsisV} onClick={() => handleEllipsisClick(supplier.id)} />
+                    )}
+                </td>
+
+                </tr>
+            ))}
+            </tbody>
+        </table>
+        </div>
+      
     </div>
   );
 };
