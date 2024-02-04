@@ -52,8 +52,6 @@ const SuppliersList = () => {
     // Open the update modal
     const updateModal = new bootstrap.Modal(document.getElementById('updateModal'));
     updateModal.show();
-
-    console.log('Edit Supplier ID:', supplier.id);
   };
 
   const handleEditSubmit = (e) => {
@@ -120,7 +118,7 @@ const SuppliersList = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="loading-status">Error: {error}</div>;
   }
 
   return (
