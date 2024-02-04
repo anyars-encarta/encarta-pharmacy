@@ -9,8 +9,8 @@
 #   end
 
 # Users
-user1 = User.create(full_name: 'Anyars Yussif', username: 'anyars')
-user2 = User.create(full_name: 'Encarta Anyars', username: 'encarta')
+user1 = User.create(full_name: 'Anyars Yussif', username: 'anyars', access_level_id: 1)
+user2 = User.create(full_name: 'Encarta Anyars', username: 'encarta', access_level_id: 2)
 
 # Suppliers
 supplier1 = Supplier.create(supplier_name: 'Tobinco Pharmaceuticals', address: 'Abuakwa Sepaase', phone_number: '0245125241', supplier_email: 'supplier1@something.com')

@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_03_120647) do
   create_table "users", force: :cascade do |t|
     t.string "full_name", null: false
     t.string "username", null: false
+    t.integer "access_level_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
