@@ -33,10 +33,33 @@ export const createSupplier = createAsyncThunk('suppliers/createSupplier', async
   }
 });
 
+// Define the async thunk to update a Supplier
+export const updateSupplier = createAsyncThunk('suppliers/updateSupplier', async ({ supplierId, formData }) => {
+    try {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+      const response = await fetch(`${base_url}/suppliers/${supplierId}`, {
+        method: 'PUT',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error updating supplier: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+);
+
 // Define the async thunk to delete a Supplier
-export const deleteSupplier = createAsyncThunk(
-  'suppliers/deleteSupplier',
-  async (supplierId) => {
+export const deleteSupplier = createAsyncThunk('suppliers/deleteSupplier', async (supplierId) => {
     try {
       const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
       const response = await fetch(`${base_url}/suppliers/${supplierId}`, {
@@ -92,6 +115,21 @@ const suppliersSlice = createSlice({
     })
 
     .addCase(createSupplier.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    })
+
+    .addCase(updateSupplier.fulfilled, (state, action) => {
+      const updatedSupplier = action.payload;
+      const index = state.suppliers.findIndex((supplier) => supplier.id === updatedSupplier.id);
+      if (index !== -1) {
+        state.suppliers[index] = updatedSupplier;
+      }
+      state.loading = false;
+      state.error = null;
+    })
+    
+    .addCase(updateSupplier.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     })

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { faEdit, faTrashAlt, faTimes, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fetchSuppliers, createSupplier, deleteSupplier } from '../redux/suppliers/suppliersSlice';
+import { fetchSuppliers, createSupplier, deleteSupplier, updateSupplier } from '../redux/suppliers/suppliersSlice';
 import '../../assets/stylesheets/suppliers.css';
 
 const SuppliersList = () => {
@@ -32,15 +32,49 @@ const SuppliersList = () => {
     supplier_email: ''
   });
 
-  const handleEditClick = (supplierId) => {
-    // Handle edit logic here
-    console.log('Edit Supplier ID:', supplierId);
+  const [updatedSupplier, setUpdatedSupplier] = useState({
+    id: null,
+    supplier_name: '',
+    address: '',
+    phone_number: '',
+    supplier_email: ''
+  });
+
+  const handleEditClick = (supplier) => {
+    setUpdatedSupplier({
+      id: supplier.id,
+      supplier_name: supplier.supplier_name,
+      address: supplier.address,
+      phone_number: supplier.phone_number,
+      supplier_email: supplier.supplier_email
+    });
+
+    // Open the update modal
+    const updateModal = new bootstrap.Modal(document.getElementById('updateModal'));
+    updateModal.show();
+
+    console.log('Edit Supplier ID:', supplier.id);
+  };
+
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    const formData = {
+      ...updatedSupplier,
+      authenticity_token: csrfToken, // Include the CSRF token in the form data
+    }
+    dispatch(updateSupplier({ supplierId: updatedSupplier.id, formData })).then(() => {
+      setUpdatedSupplier({
+        id: null,
+        supplier_name: '',
+        address: '',
+        phone_number: '',
+        supplier_email: ''
+      });
+    });
   };
 
   const handleDeleteClick = (supplierId) => {
-    // Handle delete logic here
     dispatch(deleteSupplier(supplierId));
-    console.log('Delete Supplier ID:', supplierId);
   };
 
   const handleEllipsisClick = (supplierId) => {
@@ -89,6 +123,7 @@ const SuppliersList = () => {
         <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Supplier</button>
       </div>
 
+      {/* New Supplier Modal*/}
       <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -97,7 +132,8 @@ const SuppliersList = () => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
+              
+              {/* New Supplier Form */}
               <form className="form-content" onSubmit={handleSubmit}>
                 <input type="text" required className="form-control" name="supplier_name" placeholder="Supplier Name" value={newSupplier.supplier_name} onChange={handleInputChange} />
                 <input type="text" className="form-control" name="address" placeholder="Address" value={newSupplier.address} onChange={handleInputChange}/>
@@ -107,9 +143,28 @@ const SuppliersList = () => {
                 <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Add Supplier</button>
               </form>
             </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Update Supplier Modal*/}
+      <div className="modal fade" id="updateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true" onHide={() => setUpdatedSupplier({ id: null, supplier_name: '', address: '', phone_number: '', supplier_email: '' })}>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="updateModalLabel">Update Supplier</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {/* Updated Supplier Form */}
+              <form className="form-content" onSubmit={handleEditSubmit}>
+                <input type="text" required className="form-control" name="supplier_name" placeholder="Supplier Name" value={updatedSupplier.supplier_name} onChange={handleInputChange} />
+                <input type="text" className="form-control" name="address" placeholder="Address" value={updatedSupplier.address} onChange={handleInputChange} />
+                <input type="text" className="form-control" name="phone_number" placeholder="Phone Number" value={updatedSupplier.phone_number} onChange={handleInputChange} />
+                <input type="email" className="form-control" name="supplier_email" placeholder="Email" value={updatedSupplier.supplier_email} onChange={handleInputChange} />
 
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Update Supplier</button>
+              </form>
             </div>
           </div>
         </div>
@@ -139,7 +194,7 @@ const SuppliersList = () => {
                           <td>
                               {selectedSupplierId === supplier.id ? (
                                   <div className="menu">
-                                  <FontAwesomeIcon icon={faEdit} onClick={() => handleEditClick(supplier.id)} />
+                                  <FontAwesomeIcon icon={faEdit} onClick={() => handleEditClick(supplier)} />
                                   <FontAwesomeIcon icon={faTrashAlt} onClick={() => handleDeleteClick(supplier.id)} />
                                   <FontAwesomeIcon icon={faTimes} onClick={closeMenu} />
                                   </div>
