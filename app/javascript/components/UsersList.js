@@ -13,15 +13,26 @@ const UsersList = () => {
   const loading = useSelector((state) => state.users.loading);
   const error = useSelector((state) => state.users.error);
 
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const clearSuccessMessage = () => {
+    setSuccessMessage('');
+  };
+
   const [csrfToken, setCsrfToken] = useState('');
 
   useEffect(() => {
     // Fetch the CSRF token from the meta tag
     const token = document.querySelector('meta[name="csrf-token"]').content;
   
+    if (successMessage) {
+      const timer = setTimeout(clearSuccessMessage, 3000);
+      return () => clearTimeout(timer);
+    }
+
     setCsrfToken(token);
     dispatch(fetchUsers());
-  }, [dispatch]);
+  }, [dispatch, successMessage]);
 
   const [selectedUserId, setSelectedUserId] = useState(null);
 
@@ -65,10 +76,13 @@ const UsersList = () => {
         access_level_id: ''
       });
     });
+
+    setSuccessMessage('User updated successfully');
   };
 
   const handleDeleteClick = (userId) => {
     dispatch(deleteUser(userId));
+    setSuccessMessage('User deleted successfully');
   };
 
   const handleEllipsisClick = (userId) => {
@@ -106,6 +120,8 @@ const UsersList = () => {
         access_level_id: ''
       });
     });
+
+    setSuccessMessage('User created successfully');
   };
 
   if (loading) {
@@ -120,6 +136,9 @@ const UsersList = () => {
     <div className="user-container">
       <div className="user-header">
         <h1>Users</h1>
+
+        {successMessage && <div className="success-message">{successMessage}</div>}
+
         <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New User</button>
       </div>
 
@@ -136,7 +155,7 @@ const UsersList = () => {
               {/* New User Form */}
               <form className="form-content" onSubmit={handleSubmit}>
                 <input type="text" required className="form-control" name="full_name" placeholder="Full Name" value={newUser.full_name} onChange={handleNewInputChange} />
-                <input type="text" className="form-control" name="username" placeholder="Username" value={newUser.username} onChange={handleNewInputChange}/>
+                <input type="text" required className="form-control" name="username" placeholder="Username" value={newUser.username} onChange={handleNewInputChange}/>
                 <input type="number" className="form-control" name="access_level_id" placeholder="Access Level ID" value={newUser.access_level_id} onChange={handleNewInputChange}/>
       
                 <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Add User</button>

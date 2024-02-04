@@ -13,15 +13,26 @@ const CategoriesList = () => {
   const loading = useSelector((state) => state.categories.loading);
   const error = useSelector((state) => state.categories.error);
 
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const clearSuccessMessage = () => {
+    setSuccessMessage('');
+  };
+
   const [csrfToken, setCsrfToken] = useState('');
 
   useEffect(() => {
     // Fetch the CSRF token from the meta tag
     const token = document.querySelector('meta[name="csrf-token"]').content;
   
+    if (successMessage) {
+      const timer = setTimeout(clearSuccessMessage, 3000);
+      return () => clearTimeout(timer);
+    }
+
     setCsrfToken(token);
     dispatch(fetchCategories());
-  }, [dispatch]);
+  }, [dispatch, successMessage]);
 
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
@@ -57,10 +68,13 @@ const CategoriesList = () => {
         category_name: ''
       });
     });
+
+    setSuccessMessage('Category updated successfully');
   };
 
   const handleDeleteClick = (categoryId) => {
     dispatch(deleteCategory(categoryId));
+    setSuccessMessage('Category deleted successfully');
   };
 
   const handleEllipsisClick = (categoryId) => {
@@ -96,6 +110,8 @@ const CategoriesList = () => {
         category_name: ''
       });
     });
+
+    setSuccessMessage('Category created successfully');
   };
 
   if (loading) {
@@ -110,6 +126,9 @@ const CategoriesList = () => {
     <div className="category-container">
       <div className="category-header">
         <h1>Categories</h1>
+
+        {successMessage && <div className="success-message">{successMessage}</div>}
+
         <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Category</button>
       </div>
 
