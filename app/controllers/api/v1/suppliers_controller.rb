@@ -16,6 +16,23 @@ class Api::V1::SuppliersController < ApplicationController
     end
   end
 
+  def update
+    supplier = Supplier.find(params[:id])
+
+    if supplier.update(supplier_params)
+      render json: supplier
+    else
+      render json: { errors: supplier.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    supplier = Supplier.find(params[:id])
+    supplier.destroy
+
+    head :no_content
+  end
+
   private
 
   def supplier_params
