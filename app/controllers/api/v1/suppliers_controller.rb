@@ -16,6 +16,13 @@ class Api::V1::SuppliersController < ApplicationController
     end
   end
 
+  def destroy
+    supplier = Supplier.find(params[:id])
+    supplier.destroy
+
+    head :no_content
+  end
+
   private
 
   def supplier_params

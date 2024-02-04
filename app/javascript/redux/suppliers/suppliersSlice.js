@@ -11,7 +11,6 @@ export const fetchSuppliers = createAsyncThunk('suppliers/fetchSuppliers', async
 });
 
 // Define the async thunk to create a new Supplier
-
 export const createSupplier = createAsyncThunk('suppliers/createSupplier', async (formData) => {
   try {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
@@ -33,6 +32,31 @@ export const createSupplier = createAsyncThunk('suppliers/createSupplier', async
     return { error: error.message };
   }
 });
+
+// Define the async thunk to delete a Supplier
+export const deleteSupplier = createAsyncThunk(
+  'suppliers/deleteSupplier',
+  async (supplierId) => {
+    try {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+      const response = await fetch(`${base_url}/suppliers/${supplierId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error deleting supplier: ${response.statusText}`);
+      }
+
+      return { id: supplierId };
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+);
 
 // Create the slice
 const suppliersSlice = createSlice({
@@ -68,6 +92,18 @@ const suppliersSlice = createSlice({
     })
 
     .addCase(createSupplier.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    })
+
+    .addCase(deleteSupplier.fulfilled, (state, action) => {
+      const deletedSupplierId = action.payload.id;
+      state.suppliers = state.suppliers.filter((supplier) => supplier.id !== deletedSupplierId);
+      state.loading = false;
+      state.error = null;
+    })
+
+    .addCase(deleteSupplier.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { faEdit, faTrashAlt, faTimes, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fetchSuppliers, createSupplier } from '../redux/suppliers/suppliersSlice';
+import { fetchSuppliers, createSupplier, deleteSupplier } from '../redux/suppliers/suppliersSlice';
 import '../../assets/stylesheets/suppliers.css';
 
 const SuppliersList = () => {
@@ -39,6 +39,7 @@ const SuppliersList = () => {
 
   const handleDeleteClick = (supplierId) => {
     // Handle delete logic here
+    dispatch(deleteSupplier(supplierId));
     console.log('Delete Supplier ID:', supplierId);
   };
 
