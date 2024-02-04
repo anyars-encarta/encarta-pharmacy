@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :create, :update, :destroy]
       resources :suppliers, only: [:index, :create, :update, :destroy]
       resources :categories, only: [:index, :create, :update, :destroy]
+      resources :products, only: [:index, :create, :update, :destroy]
     end
   end
 end
