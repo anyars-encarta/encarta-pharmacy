@@ -1,5 +1,5 @@
 class Api::V1::CategoriesController < ApplicationController
-    include ActionController::RequestForgeryProtection
+  include ActionController::RequestForgeryProtection
 
   def index
     @categories = Category.all
