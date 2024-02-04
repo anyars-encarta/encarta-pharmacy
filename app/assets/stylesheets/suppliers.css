@@ -1,33 +1,32 @@
 .supplier-container {
-    padding: 2% 5%;
+  padding: 2% 5%;
 }
 
 .loading-status {
-    text-align: center;
-    font-size: 5%;
-    color: blueviolet;
-    font-weight: bold;
+  text-align: center;
+  font-size: 5%;
+  color: blueviolet;
+  font-weight: bold;
 }
 
 .menu {
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
 .supplier-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
 }
 
 .ellipsis {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .form-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* gap: 2%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
