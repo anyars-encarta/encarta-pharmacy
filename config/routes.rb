@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index, :create, :update, :destroy]
       resources :suppliers, only: [:index, :create, :update, :destroy]
+      resources :categories, only: [:index, :create, :update, :destroy]
     end
   end
 end

@@ -15,3 +15,10 @@ user2 = User.create(full_name: 'Encarta Anyars', username: 'encarta', access_lev
 # Suppliers
 supplier1 = Supplier.create(supplier_name: 'Tobinco Pharmaceuticals', address: 'Abuakwa Sepaase', phone_number: '0245125241', supplier_email: 'supplier1@something.com')
 supplier2 = Supplier.create(supplier_name: 'Kinapharma', address: 'Kumasi', phone_number: '0208596548', supplier_email: 'supplier2@something.com')
+
+# Categories
+cat1 = Category.create(category_name: 'Tablets')
+cat2 = Category.create(category_name: 'Syrups')
+cat3 = Category.create(category_name: 'Drop(s)')
+cat4 = Category.create(category_name: 'Ointments')
+cat5 = Category.create(category_name: 'Creams')

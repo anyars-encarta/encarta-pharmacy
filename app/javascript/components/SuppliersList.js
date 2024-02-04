@@ -161,7 +161,7 @@ const SuppliersList = () => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              {/* Updated Supplier Form */}
+              {/* Update Supplier Form */}
               <form className="form-content" onSubmit={handleEditSubmit}>
                 <input type="text" required className="form-control" name="supplier_name" placeholder="Supplier Name" value={updatedSupplier.supplier_name} onChange={handleUpdateInputChange} />
                 <input type="text" className="form-control" name="address" placeholder="Address" value={updatedSupplier.address} onChange={handleUpdateInputChange} />
