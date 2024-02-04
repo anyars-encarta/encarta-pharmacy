@@ -13,15 +13,26 @@ const SuppliersList = () => {
   const loading = useSelector((state) => state.suppliers.loading);
   const error = useSelector((state) => state.suppliers.error);
 
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const clearSuccessMessage = () => {
+    setSuccessMessage('');
+  };
+
   const [csrfToken, setCsrfToken] = useState('');
 
   useEffect(() => {
     // Fetch the CSRF token from the meta tag
     const token = document.querySelector('meta[name="csrf-token"]').content;
-  
+    
+    if (successMessage) {
+      const timer = setTimeout(clearSuccessMessage, 3000);
+      return () => clearTimeout(timer);
+    }
+
     setCsrfToken(token);
     dispatch(fetchSuppliers());
-  }, [dispatch]);
+  }, [dispatch, successMessage]);
 
   const [selectedSupplierId, setSelectedSupplierId] = useState(null);
 
@@ -69,10 +80,13 @@ const SuppliersList = () => {
         supplier_email: ''
       });
     });
+
+    setSuccessMessage('Supplier updated successfully');
   };
 
   const handleDeleteClick = (supplierId) => {
     dispatch(deleteSupplier(supplierId));
+    setSuccessMessage('Supplier deleted successfully');
   };
 
   const handleEllipsisClick = (supplierId) => {
@@ -111,6 +125,8 @@ const SuppliersList = () => {
         supplier_email: ''
       });
     });
+
+    setSuccessMessage('Supplier created successfully');
   };
 
   if (loading) {
@@ -125,6 +141,9 @@ const SuppliersList = () => {
     <div className="supplier-container">
       <div className="supplier-header">
         <h1>Suppliers</h1>
+
+        {successMessage && <div className="success-message">{successMessage}</div>}
+
         <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Supplier</button>
       </div>
 
