@@ -283,7 +283,7 @@ const ProductsList = () => {
                 
                 {/* Add a dropdown to select a category */}
                 <label htmlFor="category_id" className="form-label">Category:</label>
-                <select className="form-control mb-3" name="category_id" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+                <select className="form-control mb-3" name="category_id" value={updatedProduct.category_id} onChange={(e) => setSelectedCategory(e.target.value)}>
                   <option value="">Select a Category</option>
                   {categories.map((category) => (
                     <option key={category.id} value={category.id}>{category.category_name}</option>
