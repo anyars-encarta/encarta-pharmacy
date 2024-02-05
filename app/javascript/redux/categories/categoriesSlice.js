@@ -1,4 +1,4 @@
-// app/javascript/redux/suppliers/suppliersSlice.js
+// app/javascript/redux/categories/categoriesSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const base_url = 'http://localhost:3000/api/v1';
