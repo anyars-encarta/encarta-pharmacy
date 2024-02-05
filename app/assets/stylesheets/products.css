@@ -1,0 +1,38 @@
+.product-container {
+    padding: 2% 5%;
+  }
+  
+  .loading-status {
+    text-align: center;
+    font-size: 5%;
+    color: blueviolet;
+    font-weight: bold;
+  }
+  
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 3%;
+  }
+
+  .ellipsis {
+    cursor: pointer;
+  }
+  
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  

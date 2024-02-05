@@ -143,7 +143,7 @@ const CategoriesList = () => {
               
               {/* New Category Form */}
               <form className="form-content" onSubmit={handleSubmit}>
-                <input type="text" required className="form-control" name="category_name" placeholder="Category Name" value={newCategory.category_name} onChange={handleNewInputChange} />
+                <input type="text" required className="form-control mb-3" name="category_name" placeholder="Category Name" value={newCategory.category_name} onChange={handleNewInputChange} />
     
                 <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Add Category</button>
               </form>
@@ -163,7 +163,7 @@ const CategoriesList = () => {
             <div class="modal-body">
               {/* Update Category Form */}
               <form className="form-content" onSubmit={handleEditSubmit}>
-                <input type="text" required className="form-control" name="category_name" placeholder="Category Name" value={updatedCategory.category_name} onChange={handleUpdateInputChange} />
+                <input type="text" required className="form-control mb-3" name="category_name" placeholder="Category Name" value={updatedCategory.category_name} onChange={handleUpdateInputChange} />
 
                 <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Update Category</button>
               </form>
@@ -178,7 +178,7 @@ const CategoriesList = () => {
                   <tr>
                       <th>ID</th>
                       <th>Category Name</th>
-                      <th>Actions</th>
+                      <th></th>
                   </tr>
               </thead>
               <tbody>

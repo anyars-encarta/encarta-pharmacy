@@ -158,10 +158,10 @@ const SuppliersList = () => {
               
               {/* New Supplier Form */}
               <form className="form-content" onSubmit={handleSubmit}>
-                <input type="text" required className="form-control" name="supplier_name" placeholder="Supplier Name" value={newSupplier.supplier_name} onChange={handleNewInputChange} />
-                <input type="text" className="form-control" name="address" placeholder="Address" value={newSupplier.address} onChange={handleNewInputChange}/>
-                <input type="text" className="form-control" name="phone_number" placeholder="Phone Number" value={newSupplier.phone_number} onChange={handleNewInputChange}/>
-                <input type="email" className="form-control" name="supplier_email" placeholder="Email" value={newSupplier.supplier_email} onChange={handleNewInputChange}/>
+                <input type="text" required className="form-control mb-3" name="supplier_name" placeholder="Supplier Name" value={newSupplier.supplier_name} onChange={handleNewInputChange} />
+                <input type="text" className="form-control mb-3" name="address" placeholder="Address" value={newSupplier.address} onChange={handleNewInputChange}/>
+                <input type="text" className="form-control mb-3" name="phone_number" placeholder="Phone Number" value={newSupplier.phone_number} onChange={handleNewInputChange}/>
+                <input type="email" className="form-control mb-3" name="supplier_email" placeholder="Email" value={newSupplier.supplier_email} onChange={handleNewInputChange}/>
       
                 <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Add Supplier</button>
               </form>
@@ -181,10 +181,10 @@ const SuppliersList = () => {
             <div class="modal-body">
               {/* Update Supplier Form */}
               <form className="form-content" onSubmit={handleEditSubmit}>
-                <input type="text" required className="form-control" name="supplier_name" placeholder="Supplier Name" value={updatedSupplier.supplier_name} onChange={handleUpdateInputChange} />
-                <input type="text" className="form-control" name="address" placeholder="Address" value={updatedSupplier.address} onChange={handleUpdateInputChange} />
-                <input type="text" className="form-control" name="phone_number" placeholder="Phone Number" value={updatedSupplier.phone_number} onChange={handleUpdateInputChange} />
-                <input type="email" className="form-control" name="supplier_email" placeholder="Email" value={updatedSupplier.supplier_email} onChange={handleUpdateInputChange} />
+                <input type="text" required className="form-control mb-3" name="supplier_name" placeholder="Supplier Name" value={updatedSupplier.supplier_name} onChange={handleUpdateInputChange} />
+                <input type="text" className="form-control mb-3" name="address" placeholder="Address" value={updatedSupplier.address} onChange={handleUpdateInputChange} />
+                <input type="text" className="form-control mb-3" name="phone_number" placeholder="Phone Number" value={updatedSupplier.phone_number} onChange={handleUpdateInputChange} />
+                <input type="email" className="form-control mb-3" name="supplier_email" placeholder="Email" value={updatedSupplier.supplier_email} onChange={handleUpdateInputChange} />
 
                 <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Update Supplier</button>
               </form>
@@ -202,7 +202,7 @@ const SuppliersList = () => {
                       <th>Address</th>
                       <th>Phone Number</th>
                       <th>Email</th>
-                      <th>Actions</th>
+                      <th></th>
                   </tr>
               </thead>
               <tbody>

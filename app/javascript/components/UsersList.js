@@ -153,9 +153,9 @@ const UsersList = () => {
               
               {/* New User Form */}
               <form className="form-content" onSubmit={handleSubmit}>
-                <input type="text" required className="form-control" name="full_name" placeholder="Full Name" value={newUser.full_name} onChange={handleNewInputChange} />
-                <input type="text" required className="form-control" name="username" placeholder="Username" value={newUser.username} onChange={handleNewInputChange}/>
-                <input type="number" className="form-control" name="access_level_id" placeholder="Access Level ID" value={newUser.access_level_id} onChange={handleNewInputChange}/>
+                <input type="text" required className="form-control mb-3" name="full_name" placeholder="Full Name" value={newUser.full_name} onChange={handleNewInputChange} />
+                <input type="text" required className="form-control mb-3" name="username" placeholder="Username" value={newUser.username} onChange={handleNewInputChange}/>
+                <input type="number" className="form-control mb-3" name="access_level_id" placeholder="Access Level ID" value={newUser.access_level_id} onChange={handleNewInputChange}/>
       
                 <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Add User</button>
               </form>
@@ -175,9 +175,9 @@ const UsersList = () => {
             <div class="modal-body">
               {/* Update User Form */}
               <form className="form-content" onSubmit={handleEditSubmit}>
-                <input type="text" required className="form-control" name="full_name" placeholder="Full Name" value={updatedUser.full_name} onChange={handleUpdateInputChange} />
-                <input type="text" className="form-control" name="username" placeholder="Username" value={updatedUser.username} onChange={handleUpdateInputChange} />
-                <input type="number" className="form-control" name="access_level_id" placeholder="Access Level ID" value={updatedUser.access_level_id} onChange={handleUpdateInputChange} />
+                <input type="text" required className="form-control mb-3" name="full_name" placeholder="Full Name" value={updatedUser.full_name} onChange={handleUpdateInputChange} />
+                <input type="text" className="form-control mb-3" name="username" placeholder="Username" value={updatedUser.username} onChange={handleUpdateInputChange} />
+                <input type="number" className="form-control mb-3" name="access_level_id" placeholder="Access Level ID" value={updatedUser.access_level_id} onChange={handleUpdateInputChange} />
 
                 <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Update User</button>
               </form>
@@ -194,7 +194,7 @@ const UsersList = () => {
                       <th>Full Name</th>
                       <th>Username</th>
                       <th>Access Level</th>
-                      <th>Actions</th>
+                      <th></th>
                   </tr>
               </thead>
               <tbody>

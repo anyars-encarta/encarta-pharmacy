@@ -1,11 +1,12 @@
 // app/javasctipt/components/ProductsList.js
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { faEdit, faTrashAlt, faTimes, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fetchProducts, createProduct, deleteProduct, updateProduct } from '../redux/products/productsSlice';
 import { fetchCategories } from '../redux/categories/categoriesSlice';
-// import '../../assets/stylesheets/products.css';
+import '../../assets/stylesheets/products.css';
 
 const ProductsList = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const ProductsList = () => {
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
 
+  const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(''); // State to track the selected category
 
@@ -189,6 +191,10 @@ const ProductsList = () => {
     setSuccessMessage('Product created successfully');
   };
 
+  const handleManageCategory = async () => {
+    navigate('/categories');
+  };
+
   if (loading) {
     return <div className="loading-status">Loading...</div>;
   }
@@ -198,13 +204,16 @@ const ProductsList = () => {
   }
 
   return (
-    <div className="supplier-container">
-      <div className="supplier-header">
+    <div className="product-container">
+      <div className="product-header">
         <h1>Products</h1>
 
         {successMessage && <div className="success-message">{successMessage}</div>}
 
-        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Product</button>
+        <div className="buttons">
+          <button type="button" className="btn btn-outline-primary" onClick={handleManageCategory}>Manage Categories</button>
+          <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Product</button>
+        </div>
       </div>
 
       {/* New Product Modal*/}
