@@ -29,10 +29,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_04_185902) do
     t.integer "unit_packing", default: 0, null: false
     t.integer "total_quantity", default: 0, null: false
     t.integer "reorder_level", default: 0, null: false
-    t.integer "unit_cost", default: 0, null: false
     t.integer "retail_selling_price", default: 0, null: false
     t.integer "wholesale_selling_price", default: 0, null: false
-    t.date "expiry_date"
     t.string "shelving"
     t.string "search_key"
     t.datetime "created_at", null: false

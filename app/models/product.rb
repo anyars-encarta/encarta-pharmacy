@@ -8,7 +8,6 @@ class Product < ApplicationRecord
   validates :unit_packing, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :total_quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :reorder_level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :unit_cost, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :retail_selling_price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :wholesale_selling_price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 end

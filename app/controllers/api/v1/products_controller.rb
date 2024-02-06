@@ -37,7 +37,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:product_name, :product_code, :category_id, :weight, :pack_quantity, :unit_packing,
-                                    :total_quantity, :reorder_level, :unit_cost, :retail_selling_price,
-                                    :wholesale_selling_price, :expiry_date, :shelving, :search_key)
+                                    :total_quantity, :reorder_level, :retail_selling_price, :wholesale_selling_price,
+                                    :shelving, :search_key)
   end
 end

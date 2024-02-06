@@ -54,10 +54,8 @@ const ProductsList = () => {
     unit_packing: 0,
     total_quantity: 0,
     reorder_level: 0,
-    unit_cost: 0,
     retail_selling_price: 0,
     wholesale_selling_price: 0,
-    expiry_date: '',
     shelving: '',
     search_key: ''
   });
@@ -72,10 +70,8 @@ const ProductsList = () => {
     unit_packing: 0,
     total_quantity: 0,
     reorder_level: 0,
-    unit_cost: 0,
     retail_selling_price: 0,
     wholesale_selling_price: 0,
-    expiry_date: '',
     shelving: '',
     search_key: ''
   });
@@ -91,10 +87,8 @@ const ProductsList = () => {
       unit_packing: product.unit_packing,
       total_quantity: product.total_quantity,
       reorder_level: product.reorder_level,
-      unit_cost: product.unit_cost,
       retail_selling_price: product.retail_selling_price,
       wholesale_selling_price: product.wholesale_selling_price,
-      expiry_date: product.expiry_date,
       shelving: product.shelving,
       search_key: product.search_key
     });
@@ -122,10 +116,8 @@ const ProductsList = () => {
         unit_packing: 0,
         total_quantity: 0,
         reorder_level: 0,
-        unit_cost: 0,
         retail_selling_price: 0,
         wholesale_selling_price: 0,
-        expiry_date: '',
         shelving: '',
         search_key: ''
       });
@@ -178,10 +170,8 @@ const ProductsList = () => {
         unit_packing: 0,
         total_quantity: 0,
         reorder_level: 0,
-        unit_cost: 0,
         retail_selling_price: 0,
         wholesale_selling_price: 0,
-        expiry_date: '',
         shelving: '',
         search_key: ''
       });
@@ -254,17 +244,11 @@ const ProductsList = () => {
                 <label htmlFor="reorder_level" className="form-label">Re-order Level:</label>
                 <input type="number" className="form-control mb-3" name="reorder_level" placeholder="Reorder Level" value={newProduct.reorder_level} onChange={handleNewInputChange}/>
                 
-                <label htmlFor="unit_cost" className="form-label">Unit Cost:</label>
-                <input type="number" className="form-control mb-3" name="unit_cost" placeholder="Unit Cost" value={newProduct.unit_cost} onChange={handleNewInputChange}/>
-                
                 <label htmlFor="retail_selling_price" className="form-label">Retail Selling Price:</label>
                 <input type="number" className="form-control mb-3" name="retail_selling_price" placeholder="Retail Selling Price" value={newProduct.retail_selling_price} onChange={handleNewInputChange}/>
                 
                 <label htmlFor="wholesale_selling_price" className="form-label">Wholesale Selling Price:</label>
                 <input type="number" className="form-control mb-3" name="wholesale_selling_price" placeholder="Wholesale Selling Price" value={newProduct.wholesale_selling_price} onChange={handleNewInputChange}/>
-                
-                <label htmlFor="expiry_date" className="form-label">Expiry Date:</label>
-                <input type="date" className="form-control mb-3" name="expiry_date" placeholder="Expiry Date" value={newProduct.expiry_date} onChange={handleNewInputChange}/>
                 
                 <input type="text" className="form-control mb-3" name="shelving" placeholder="Shelving" value={newProduct.shelving} onChange={handleNewInputChange}/>
                 <textarea className="form-control mb-3" name="search_key" placeholder="Search Key" value={newProduct.search_key} onChange={handleNewInputChange}/>
@@ -313,17 +297,11 @@ const ProductsList = () => {
                 <label htmlFor="reorder_level" className="form-label">Re-order Level:</label>
                 <input type="number" className="form-control mb-3" name="reorder_level" placeholder="Reorder Level" value={updatedProduct.reorder_level} onChange={handleUpdateInputChange} />
                 
-                <label htmlFor="unit_cost" className="form-label">Unit Cost:</label>
-                <input type="number" className="form-control mb-3" name="unit_cost" placeholder="Unit Cost" value={updatedProduct.unit_cost} onChange={handleUpdateInputChange} />
-                
                 <label htmlFor="retail_selling_price" className="form-label">Retail Selling Price:</label>
                 <input type="number" className="form-control mb-3" name="retail_selling_price" placeholder="Retail Selling Price" value={updatedProduct.retail_selling_price} onChange={handleUpdateInputChange} />
                 
                 <label htmlFor="wholesale_selling_price" className="form-label">Wholesale Selling Price:</label>
                 <input type="number" className="form-control mb-3" name="wholesale_selling_price" placeholder="Wholesale Selling Price" value={updatedProduct.wholesale_selling_price} onChange={handleUpdateInputChange} />
-                
-                <label htmlFor="expiry_date" className="form-label">Expiry Date:</label>
-                <input type="date" className="form-control mb-3" name="expiry_date" placeholder="Expiry Date" value={updatedProduct.expiry_date} onChange={handleUpdateInputChange} />
                 
                 <input type="text" className="form-control mb-3" name="shelving" placeholder="Shelving" value={updatedProduct.shelving} onChange={handleUpdateInputChange} />
                 <textarea className="form-control mb-3" name="search_key" placeholder="Search Key" value={updatedProduct.search_key} onChange={handleUpdateInputChange} />
@@ -348,10 +326,8 @@ const ProductsList = () => {
                       <th>Unit Pack</th>
                       <th>Total Qty</th>
                       <th>Reorder Level</th>
-                      <th>Unit Cost</th>
                       <th>R. Selling Px</th>
                       <th>W. Selling Px</th>
-                      <th>Expiry Date</th>
                       <th>Shelving</th>
                       <th></th>
                   </tr>
@@ -375,10 +351,8 @@ const ProductsList = () => {
                           <td>{product.unit_packing}</td>
                           <td>{product.total_quantity}</td>
                           <td>{product.reorder_level}</td>
-                          <td>{product.unit_cost}</td>
                           <td>{product.retail_selling_price}</td>
                           <td>{product.wholesale_selling_price}</td>
-                          <td>{product.expiry_date}</td>
                           <td>{product.shelving}</td>
 
                           <td>
